@@ -15,12 +15,28 @@ class DecksController < ApplicationController
   end
 
   def edit
-    @deck = Deck.new
+    @deck = find_deck
+  end
+
+  def update
+    @deck = find_deck
+    @deck.update(deck_params)
+    redirect_to :decks
+  end
+
+  def destroy
+    @deck = find_deck
+    @deck.destroy
+    redirect_to :decks
   end
 
   private
 
   def deck_params
     params.require(:deck).permit(:name)
+  end
+
+  def find_deck
+    Deck.find(params[:id])
   end
 end

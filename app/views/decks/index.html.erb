@@ -1,5 +1,11 @@
 <h3>Decks</h3>
 <% @decks.each do |deck| %>
-  <%= deck.name %>
+  <div>
+    <%= deck.name %>
+    <%= link_to 'Edit', edit_deck_path(deck) %>
+    <%= link_to 'Delete', deck_path(deck), method: :delete %>
+  </div>
 <% end %>
-
+<div>
+  <%= link_to 'New', new_deck_path %>
+</div>
